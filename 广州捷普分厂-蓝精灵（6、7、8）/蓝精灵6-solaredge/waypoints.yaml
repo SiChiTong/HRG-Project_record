@@ -1,0 +1,253 @@
+waypoints:
+  - name: home_point
+    failure_mode: LOOP
+    frame_id: map
+    type: goal
+    pose:
+      position:
+        x: -5.05
+        y: 2.25
+        z: 0
+      orientation:
+        x: 0
+        y: 0
+        z: 0
+        w: 1
+  - name: charge_point
+    failure_mode: LOOP
+    frame_id: map
+    type: goal
+    pose:
+      position:
+        x: -5.38
+        y: 2.25
+        z: 0
+      orientation:
+        x: 0
+        y: 0
+        z: -0.7071
+        w: 0.7071
+  - name: casing8_001
+    close_enough: 0
+    failure_mode: LOOP
+    frame_id: map
+    goal_timeout: 0
+    type: goal
+    pose:
+      position:
+        x: 24.39
+        y: -65.48
+        z: 0
+      orientation:
+        x: 0
+        y: 0
+        z: 0
+        w: 1
+  - name: material_go
+    close_enough: 0.025
+    failure_mode: LOOP
+    frame_id: map
+    goal_timeout: 0
+    type: goal
+    pose:
+      position:
+        x: -2.8
+        y: 2.2
+        z: 0
+      orientation:
+        x: 0
+        y: 0
+        z: -0.7071
+        w: 0.7071
+  - name: material_back
+    close_enough: 0
+    failure_mode: LOOP
+    frame_id: map
+    goal_timeout: 0
+    type: goal
+    pose:
+      position:
+        x: -3.974
+        y: 2.2
+        z: 0
+      orientation:
+        x: 0
+        y: 0
+        z: 1
+        w: 0
+  - name: casing8_back_001
+    close_enough: 0.05
+    failure_mode: LOOP
+    frame_id: map
+    goal_timeout: 0
+    type: goal
+    pose:
+      position:
+        x: 25.63
+        y: -67.89
+        z: 0
+      orientation:
+        x: 0
+        y: 0
+        z: 0.7071
+        w: 0.7071
+  - name: open_door_go
+    close_enough: 0.2
+    failure_mode: LOOP
+    frame_id: map
+    goal_timeout: 0
+    type: goal
+    pose:
+      position:
+        x: -1.05
+        y: 1.8
+        z: 0
+      orientation:
+        x: 0
+        y: 0
+        z: 0.7071
+        w: 0.7071
+  - name: open_door_back
+    close_enough: 0.2
+    failure_mode: LOOP
+    frame_id: map
+    goal_timeout: 0
+    type: goal
+    pose:
+      position:
+        x: -1.05
+        y: 4.75
+        z: 0
+      orientation:
+        x: 0
+        y: 0
+        z: -0.7071
+        w: 0.7071
+  - name: wait1s
+    goal_timeout: 3
+    type: timer
+  - name: door_open
+    id: 6
+    intensity: 1
+    itype: 1
+    op: subscribe
+    poll: door_open
+    topic: joy_door
+    type: sensor_msgs/Joy
+  - name: door_close
+    id: 6
+    intensity: 0
+    itype: 1
+    op: subscribe
+    poll: door_close
+    topic: joy_door
+    type: sensor_msgs/Joy
+  - name: do_forward_charge
+    homing_goal: base_link
+    type: homing_control
+    x_goal: 0.4
+    y_goal: 0.0
+    yaw_goal: 0.0
+  - name: do_forward_charge_go
+    homing_goal: base_link
+    type: homing_control
+    x_goal: 0.33
+    y_goal: 0.0
+    yaw_goal: 0.0
+  - name: do_forward_charge_go1
+    homing_goal: base_link
+    type: homing_control
+    x_goal: 0.25
+    y_goal: 0.0
+    yaw_goal: 0.0
+trajectories:
+  - name: Casing7/8
+    waypoints:
+    - material_go
+    - wait1s
+    - do_forward_charge_go1
+    - open_shelf_wp
+    - lift_up_wp
+    - wheel_rotate_left_wp
+    - open_door_go
+    - casing8_001
+    - lift_down_wp
+    - wheel_rotate_right_wp
+    - do_forward
+    - casing8_back_001
+    - wait1s
+    - open_shelf_wp
+    - lift_up_wp
+    - wheel_rotate_left_wp
+    - open_door_back
+    - wait1s
+    - door_open
+    - material_back
+    - door_close
+    - wait1s
+    - wheel_rotate_left_wp
+    - wait1s
+    - do_forward
+    - lift_down_wp
+    - do_backward
+    - home_point
+  - name: Casing_go
+    waypoints:
+    - material_go
+    - wait1s
+    - do_forward_charge_go1
+    - open_shelf_wp
+    - lift_up_wp
+    - wheel_rotate_left_wp
+    - open_door_go
+    - casing8_001
+    - lift_down_wp
+    - wheel_rotate_right_wp
+    - do_forward
+    - open_door_back
+    - wait1s
+    - door_open
+    - home_point
+    - door_close
+  - name: Casing_back
+    waypoints:
+    - casing8_back_001
+    - wait1s
+    - open_shelf_wp
+    - lift_up_wp
+    - wheel_rotate_left_wp
+    - open_door_back
+    - wait1s
+    - door_open
+    - material_back
+    - door_close
+    - wait1s
+    - wheel_rotate_left_wp
+    - wait1s
+    - do_forward
+    - lift_down_wp
+    - do_backward
+    - home_point
+  - name: autocharge_on
+    waypoints:
+    - teb_agv_params_wp
+    - charge_point
+    - do_forward_charge
+    - pile_on
+    - bz_docking_params_wp
+    - relocate_charge
+    - pile_off
+    - wheel_dump_pos
+    - wait10s
+    - wheel_dump_pos
+    - wait10s
+    - wheel_back_pos
+    - wait5s
+    - joy_start_1
+    - teb_agv_params_wp
+  - name: autocharge_off
+    waypoints:
+    - joy_start_0
+    - teb_agv_params_wp
+    - goal_forward
+    - home_point
