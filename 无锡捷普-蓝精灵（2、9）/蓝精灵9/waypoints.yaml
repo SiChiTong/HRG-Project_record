@@ -466,6 +466,31 @@ trajectories:
     - wait100s
     - departure_alert
     - wait10s
+    - Parking_site009
+    - wait10s
+    - wait100s
+    - departure_alert
+    - wait10s
+    - Parking_site010
+    - wait10s
+    - wait100s
+    - departure_alert
+    - wait10s
+    - Parking_site011
+    - wait10s
+    - wait100s
+    - departure_alert
+    - wait10s
+    - Parking_site012
+    - wait10s
+    - wait100s
+    - departure_alert
+    - wait10s
+    - Parking_site013
+    - wait10s
+    - wait100s
+    - departure_alert
+    - wait10s
     - down_end
     - lift_down_wp
     - do_forward
