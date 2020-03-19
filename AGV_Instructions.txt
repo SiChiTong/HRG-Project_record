@@ -333,6 +333,16 @@ sudo iw dev wlam0 scan | less
 //手柄模式
 X  mode灯不亮
 
+//websocket在线测试
+//test
+{
+ "msg": {
+  "control": 1,
+  "goal_name": "{'goal_name': 'test'}"
+ },
+ "op": "publish",
+ "topic": "/nav_ctrl"
+}
 
 
 
