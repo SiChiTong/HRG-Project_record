@@ -1,16 +1,16 @@
 waypoints:
   - name: lift_up_wp
-    failure_mode: lift_up_cb
+    failure_mode: lift_up_cb_display
     type: call
   - name: lift_down_wp
-    failure_mode: lift_down_cb
+    failure_mode: lift_down_cb_display
     type: call
   - name: init
-    failure_mode: lift_init_cb
+    failure_mode: lift_init_cb_display
     type: call
     display: true
   - name: init_wp
-    failure_mode: init_cb
+    failure_mode: init_cb_display
     type: call
     display: true
   - name: init_pose
@@ -235,6 +235,7 @@ waypoints:
     x_goal: 1.1
     y_goal: 0.0
     yaw_goal: 0.0
+    display: true
   - name: do_backward
     homing_goal: base_link
     type: homing_control
@@ -334,42 +335,42 @@ waypoints:
     type: publisher
     display: true
   - name: wheel_rotate_left_wp
-    failure_mode: wheel_rotate_left_cb
+    failure_mode: wheel_rotate_left_cb_display
     type: call
     display: true
   - name: wheel_rotate_right
     type: publisher
     display: true
   - name: wheel_rotate_right_wp
-    failure_mode: wheel_rotate_right_cb
+    failure_mode: wheel_rotate_right_cb_display
     type: call
     display: true
   - name: wheel_back_pos
     type: publisher
     display: true
   - name: wheel_back_pos_wp
-    failure_mode: wheel_back_pos_cb
+    failure_mode: wheel_back_pos_cb_display
     type: call
     display: true
   - name: wheel_forward_pos
     type: publisher
     display: true
   - name: wheel_forward_pos_wp
-    failure_mode: wheel_forward_pos_cb
+    failure_mode: wheel_forward_pos_cb_display
     type: call
     display: true
   - name: wheel_dump_pos
     type: publisher
     display: true
   - name: wheel_dump_pos_wp
-    failure_mode: wheel_dump_pos_cb
+    failure_mode: wheel_dump_pos_cb_display
     type: call
     display: true
   - name: wheel_load_pos
     type: publisher
     display: true
   - name: wheel_load_pos_wp
-    failure_mode: wheel_load_pos_cb
+    failure_mode: wheel_load_pos_cb_display
     type: call
     display: true
   - name: lift_stop_vel
@@ -566,27 +567,27 @@ waypoints:
     value: dwa_local_planner/DWAPlannerROS
     display: true
   - name: teb_agv_params_wp
-    failure_mode: teb_agv_params_cb
+    failure_mode: teb_agv_params_cb_display
     type: call
     display: true
   - name: teb_shelf_params_wp
-    failure_mode: teb_shelf_params_cb
+    failure_mode: teb_shelf_params_cb_display
     type: call
     display: true
   - name: dwa_agv_params_wp
-    failure_mode: dwa_agv_params_cb
+    failure_mode: dwa_agv_params_cb_display
     type: call
     display: true
   - name: dwa_shelf_params_wp
-    failure_mode: dwa_shelf_params_cb
+    failure_mode: dwa_shelf_params_cb_display
     type: call
     display: true
   - name: bz_docking_params_wp
-    failure_mode: bz_docking_params_cb
+    failure_mode: bz_docking_params_cb_display
     type: call
     display: true
   - name: bz_nav_params_wp
-    failure_mode: bz_nav_params_cb
+    failure_mode: bz_nav_params_cb_display
     type: call
     display: true
   - name: local_resolu_001
@@ -692,19 +693,19 @@ waypoints:
     value: 1.92
     display: true
   - name: do_forward_wp
-    failure_mode: do_forward_cb
+    failure_mode: do_forward_cb_display
     type: call
     display: true
   - name: open_shelf_wp
-    failure_mode: open_shelf_cb
+    failure_mode: open_shelf_cb_display
     type: call
     display: true
   - name: open_triangle_wp
-    failure_mode: open_triangle_cb
+    failure_mode: open_triangle_cb_display
     type: call
     display: true
   - name: open_one_wp
-    failure_mode: open_one_cb
+    failure_mode: open_one_cb_display
     type: call
     display: true
 trajectories:
@@ -726,13 +727,13 @@ trajectories:
     - joy_start_0
     - teb_agv_params_wp
     - goal_forward
-  - name: lift_up_cb
+  - name: lift_up_cb_display
     waypoints:
     - shelf_leg_remove_true
     - lift_load
     - lift_stop_vel
     - change_teb
-  - name: lift_down_cb
+  - name: lift_down_cb_display
     waypoints:
     - shelf_leg_remove_false
     - lift_dump
@@ -740,19 +741,19 @@ trajectories:
     - change_teb
     - agv_local_footprint
     - agv_global_footprint
-  - name: teb_agv_params_cb
+  - name: teb_agv_params_cb_display
     waypoints:
     - change_teb
     - agv_local_footprint
     - agv_global_footprint
-  - name: teb_shelf_params_cb
+  - name: teb_shelf_params_cb_display
     waypoints:
     - change_teb
-  - name: init_cb
+  - name: init_cb_display
     waypoints:
     - wait10s
     - init_pose
-  - name: lift_init_cb
+  - name: lift_init_cb_display
     waypoints:
     - init_wp
     - lift_dump_limit
@@ -762,50 +763,50 @@ trajectories:
     - lift_stop_vel
     - lift_home_pos
     - initialization_ending
-  - name: wheel_back_pos_cb
+  - name: wheel_back_pos_cb_display
     waypoints:
     - wheel_back_pos
     - left_stop_pos
     - right_stop_pos
-  - name: wheel_forward_pos_cb
+  - name: wheel_forward_pos_cb_display
     waypoints:
     - wheel_forward_pos
     - left_stop_pos
     - right_stop_pos
-  - name: wheel_dump_pos_cb
+  - name: wheel_dump_pos_cb_display
     waypoints:
     - wheel_dump_pos
     - left_stop_pos
     - right_stop_pos
-  - name: wheel_load_pos_cb
+  - name: wheel_load_pos_cb_display
     waypoints:
     - wheel_load_pos
     - left_stop_pos
     - right_stop_pos
-  - name: wheel_rotate_left_cb
+  - name: wheel_rotate_left_cb_display
     waypoints:
     - wheel_rotate_left
     - rotate_stop_pos
     - left_stop_pos
     - right_stop_pos
-  - name: wheel_rotate_right_cb
+  - name: wheel_rotate_right_cb_display
     waypoints:
     - wheel_rotate_right
     - rotate_stop_pos
     - left_stop_pos
     - right_stop_pos
 
-  - name: dwa_agv_params_cb
+  - name: dwa_agv_params_cb_display
     waypoints:
     - change_dwa
     - local_resolu_005
     - agv_local_footprint
     - agv_global_footprint
-  - name: dwa_shelf_params_cb
+  - name: dwa_shelf_params_cb_display
     waypoints:
     - change_dwa
     - local_resolu_005
-  - name: bz_docking_params_cb
+  - name: bz_docking_params_cb_display
     waypoints:
     - change_bz
     - bz_sim_time
@@ -813,34 +814,34 @@ trajectories:
     - local_resolu_001
     - agv_local_footprint
     - agv_global_footprint
-  - name: bz_nav_params_cb
+  - name: bz_nav_params_cb_display
     waypoints:
     - change_bz
     - bz_motion_nav
     - local_resolu_001
     - agv_local_footprint
     - agv_global_footprint
-  - name: do_forward_cb
+  - name: do_forward_cb_display
     waypoints:
     - obstacle_start_70
     - obstacle_end_110
     - do_forward
     - obstacle_start_0
     - obstacle_end_180
-  - name: open_shelf_cb
+  - name: open_shelf_cb_display
     waypoints:
     - shelf_on
     - wait5s
     - homing_control
     - shelf_off
-  - name: open_triangle_cb
+  - name: open_triangle_cb_display
     waypoints:
     - triangle_on
     - wait10s
     - wait5s
     - triangle_homing
     - triangle_off
-  - name: open_one_cb
+  - name: open_one_cb_display
     waypoints:
     - one_on
     - wait10s
