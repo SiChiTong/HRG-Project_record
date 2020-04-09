@@ -6,7 +6,7 @@ waypoints:
     pose:
       position:
         x: -5.05
-        y: 2.25
+        y: 2.28
         z: 0
       orientation:
         x: 0
@@ -19,7 +19,7 @@ waypoints:
     type: goal
     pose:
       position:
-        x: -5.38
+        x: -5.3
         y: 2.25
         z: 0
       orientation:
@@ -108,7 +108,7 @@ waypoints:
         z: 0.7071
         w: 0.7071
   - name: open_door_back
-    close_enough: 0.2
+    close_enough: 0
     failure_mode: LOOP
     frame_id: map
     goal_timeout: 0
@@ -127,21 +127,11 @@ waypoints:
     goal_timeout: 3
     type: timer
   - name: door_open
-    id: 6
-    intensity: 1
-    itype: 1
-    op: subscribe
-    poll: door_open
-    topic: joy_door
-    type: sensor_msgs/Joy
+    failure_mode: 5
+    type: pubsuber
   - name: door_close
-    id: 6
-    intensity: 0
-    itype: 1
-    op: subscribe
-    poll: door_close
-    topic: joy_door
-    type: sensor_msgs/Joy
+    failure_mode: 5
+    type: pubsuber
   - name: do_forward_charge
     homing_goal: base_link
     type: homing_control
@@ -160,6 +150,34 @@ waypoints:
     x_goal: 0.25
     y_goal: 0.0
     yaw_goal: 0.0
+  - name: test001
+    failure_mode: LOOP
+    frame_id: map
+    type: goal
+    pose:
+      position:
+        x: 1.86
+        y: 4.71
+        z: 0
+      orientation:
+        x: 0
+        y: 0
+        z: 1
+        w: 0
+  - name: pathsite_001
+    failure_mode: LOOP
+    frame_id: map
+    type: goal
+    pose:
+      position:
+        x: -1.99
+        y: 2.28
+        z: 0
+      orientation:
+        x: 0
+        y: 0
+        z: 0
+        w: 1
 trajectories:
   - name: Casing7/8
     waypoints:
@@ -180,7 +198,6 @@ trajectories:
     - lift_up_wp
     - wheel_rotate_left_wp
     - open_door_back
-    - wait1s
     - door_open
     - material_back
     - door_close
@@ -205,19 +222,20 @@ trajectories:
     - wheel_rotate_right_wp
     - do_forward
     - open_door_back
-    - wait1s
     - door_open
     - home_point
     - door_close
   - name: Casing_back
     waypoints:
+    - pathsite_001
+    - door_open
+    - door_close
     - casing8_back_001
     - wait1s
     - open_shelf_wp
     - lift_up_wp
     - wheel_rotate_left_wp
     - open_door_back
-    - wait1s
     - door_open
     - material_back
     - door_close
@@ -237,10 +255,7 @@ trajectories:
     - bz_docking_params_wp
     - relocate_charge
     - pile_off
-    - wheel_dump_pos
-    - wait10s
-    - wheel_dump_pos
-    - wait10s
+    - turn_back
     - wheel_back_pos
     - wait5s
     - joy_start_1
@@ -251,3 +266,15 @@ trajectories:
     - teb_agv_params_wp
     - goal_forward
     - home_point
+  - name: test_path
+    waypoints:
+    - pathsite_001
+    - door_open
+    - door_close
+    - test001
+    - open_door_back
+    - wait1s
+    - door_open
+    - door_close
+    - home_point
+    - looper
